@@ -52,7 +52,7 @@ import id.fadhelmw.liquid.ui.SelectOptionScreen
 import id.fadhelmw.liquid.ui.StartOrderScreen
 
 /**
- * enum values that represent the screens in the app
+ * setiap variable yang ditampilkan di dalam app, diambil dari data string
  */
 enum class CupcakeScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
@@ -62,7 +62,7 @@ enum class CupcakeScreen(@StringRes val title: Int) {
 }
 
 /**
- * Composable that displays the topBar and displays back button if back navigation is possible.
+ * composable yang menampilkan tampilan topbar dan back pada bawah bawah navigator
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,13 +97,14 @@ fun CupcakeApp(
     viewModel: OrderViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
-    // Get current back stack entry
+    // kembali ke navigasi sesuai urutan stack yang di click
     val backStackEntry by navController.currentBackStackEntryAsState()
-    // Get the name of the current screen
+    // melihat nama screen yang sedang ditampilkan
     val currentScreen = CupcakeScreen.valueOf(
         backStackEntry?.destination?.route ?: CupcakeScreen.Start.name
     )
 
+    //menentukan lokasi yang sedang di implementasikan, entah itu bagian navigasi maupun tampilan
     Scaffold(
         topBar = {
             CupcakeAppBar(
@@ -114,12 +115,15 @@ fun CupcakeApp(
         }
     ) { innerPadding ->
         val uiState by viewModel.uiState.collectAsState()
-
+        // navhost merupakan container untuk menampilkan destination selanjutnya
         NavHost(
             navController = navController,
             startDestination = CupcakeScreen.Start.name,
             modifier = Modifier.padding(innerPadding)
         ) {
+            //navController digunakan untuk mengelola navigasi antar layar atau tampilan
+            //sehingga ketika customer sedang melakukan pesanan dan ingin cancel karena kesalahan
+            //dapat menekan tombol back
             composable(route = CupcakeScreen.Start.name) {
                 StartOrderScreen(
                     quantityOptions = DataSource.quantityOptions,

@@ -69,11 +69,11 @@ fun OrderSummaryScreen(
     val newOrder = stringResource(R.string.new_cupcake_order)
     //Create a list of order summary to display
     val items = listOf(
-        // Summary line 1: display selected quantity
+        // Summary line 1: menampilkan jumlah quantity
         Pair(stringResource(R.string.quantity), numberOfCupcakes),
-        // Summary line 2: display selected flavor
+        // Summary line 2: menampilkan rasa yang di pilih
         Pair(stringResource(R.string.flavor), orderUiState.flavor),
-        // Summary line 3: display selected pickup date
+        // Summary line 3: menampilkan tanggal pengambilan
         Pair(stringResource(R.string.pickup_date), orderUiState.date)
     )
 
@@ -104,6 +104,7 @@ fun OrderSummaryScreen(
             Column(
                 verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
             ) {
+                //button untuk mengirim dan untuk mengcancel
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = { onSendButtonClicked(newOrder, orderSummary) }

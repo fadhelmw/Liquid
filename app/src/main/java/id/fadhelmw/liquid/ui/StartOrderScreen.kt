@@ -43,7 +43,7 @@ import id.fadhelmw.liquid.R
 import id.fadhelmw.liquid.data.DataSource
 
 /**
- * Composable that allows the user to select the desired cupcake quantity and expects
+ * composable yang membuat customer dapat menentukan jumlah liquid yang ingin di pesan
  * [onNextButtonClicked] lambda that expects the selected quantity and triggers the navigation to
  * next screen
  */
